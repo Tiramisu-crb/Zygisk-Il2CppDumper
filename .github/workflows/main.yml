@@ -1,10 +1,10 @@
-name: Build
+name: ビルド
 
 on:
   workflow_dispatch:
     inputs:
       package_name:
-        description: "Game package name: com.fengchi.ldjx.nearme.gamecenter"
+        description: "ゲームのパッケージ名:"
         required: true
 
 jobs:
@@ -25,7 +25,8 @@ jobs:
           sed -i "s/com.game.packagename/${{ github.event.inputs.package_name }}/g" module/src/main/cpp/game.h
           ./gradlew :module:assembleRelease
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: zygisk-il2cppdumper
           path: out/magisk_module_release/
+
